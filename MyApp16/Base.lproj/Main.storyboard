@@ -37,12 +37,17 @@
                                     <action selector="doTest2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0lV-PE-TwI"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progressViewStyle="bar" translatesAutoresizingMaskIntoConstraints="NO" id="3au-hL-Heh">
+                                <rect key="frame" x="36" y="74.5" width="233" height="1.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="imgView" destination="Xce-ft-1wU" id="Zc1-wc-SYI"/>
+                        <outlet property="progress" destination="3au-hL-Heh" id="RFB-Un-Wu3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

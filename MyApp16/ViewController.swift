@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ViewController: UIViewController, URLSessionDownloadDelegate {
+class ViewController: UIViewController, URLSessionDownloadDelegate, URLSessionDataDelegate {
+    
+    @IBOutlet weak var progress: UIProgressView!
     @IBOutlet weak var imgView: UIImageView!
     private var q1 = DispatchQueue(label: "q1", qos: DispatchQoS.background, attributes: DispatchQueue.Attributes.concurrent)
     
@@ -25,6 +27,7 @@ class ViewController: UIViewController, URLSessionDownloadDelegate {
     }
     
     @IBAction func doTest1(_ sender: Any) {
+        progress.progress = 0
         let url = URL(string: "http://www.planwallpaper.com/static/images/abstract-background-design.jpg")
         
         let config = URLSessionConfiguration.background(withIdentifier: "myid")
@@ -43,12 +46,19 @@ class ViewController: UIViewController, URLSessionDownloadDelegate {
                 self.imgView.image = img
             }
         }
-        
+    }
+    public func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64){
+        print("\(bytesWritten):\(totalBytesWritten):\(totalBytesExpectedToWrite)")
+        DispatchQueue.main.async {
+            self.progress.progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        }
         
     }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        progress.progress = 0
     }
 }
 
